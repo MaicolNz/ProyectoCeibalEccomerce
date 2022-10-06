@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="home.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -36,12 +36,34 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div class="container">
+  <div id="titulo" class="pb-5 container">
+
+  </div>
+  <div class="col text-end">
+    <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+      <input type="radio" class="btn-check" name="options" id="Ascendente">
+      <label class="btn btn-light" for="Ascendente"><i class="fas fa-sort-amount-up mr-1"></i></label>
+      <input type="radio" class="btn-check" name="options" id="Descendente" checked>
+      <label class="btn btn-light" for="Descendente"><i class="fas fa-sort-amount-down mr-1"></i></label>
+      <input type="radio" class="btn-check" name="options" id="Relevancia">
+      <label class="btn btn-light" for="Relevancia"><i class="fas fa-sort-amount-up mr-1">Rel</i></label>
+            <div class="col-3 p-0"">
+              <input class="form-control" type="number" placeholder="min." id="min">
+            </div>
+            <div class="col-3 p-0">
+              <input class="form-control" type="number" placeholder="máx." id="max">
+            </div> <button class="btn btn-light btn-block" id="Filtrar">Filtrar</button>
+
+    </div>
+  </div>
+
+  <main class="pb-5 container" id="productos">
+    
+    <!-- <div class="container">
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
-    </div>
+    </div> -->
   </main>
   <footer class="text-muted">
     <div class="container">
