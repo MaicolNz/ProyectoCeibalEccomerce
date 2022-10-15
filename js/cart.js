@@ -1,5 +1,5 @@
 var ids = [];
-var costs = [];
+
 function subtotal(cost, cant) {
   return cost * cant;
 }
@@ -34,8 +34,14 @@ fetch("https://japceibal.github.io/emercado-api/user_cart/" + "25801" + ".json")
 
 document.addEventListener("input", function (evento) {
   for (let i = 0; i < ids.length; i++) {
-    document.getElementById("sub" + ids[i]).innerHTML = `$ ${
-      document.getElementById("quantity" + ids[i]).value * costs[i]
-    }`;
+    fetch(PRODUCT_INFO_URL + ids[i] + ".json")
+      .then((response) => response.json())
+      .then(function (producto) {
+        document.getElementById("sub" + producto.id).innerHTML = `${
+          producto.currency
+        } ${
+          document.getElementById("quantity" + ids[i]).value * producto.cost
+        }`;
+      });
   }
 });
