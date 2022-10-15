@@ -26,7 +26,6 @@ fetch("https://japceibal.github.io/emercado-api/user_cart/" + "25801" + ".json")
           )}</td>
           </tr>`;
           ids.push(producto.id);
-          costs.push(producto.cost);
           document.getElementById("tabla").innerHTML += html;
         });
     }
