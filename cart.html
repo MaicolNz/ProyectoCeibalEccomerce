@@ -63,13 +63,12 @@
         </table>
         <hr />
         <h3>Tipo de envío</h3>
-        <form action="">
-          <input type="radio" id="Premium" name="Premium" />
-          <label for="Premium">Premium de 2 a 5 dias(15%)</label><br />
-          <input type="radio" id="Express" name="Express" />
-          <label for="Express">Express de 5 a 8 dias(7%)</label><br />
-          <input type="radio" id="Standard" name="Standard" />
-          <label for="Standard">Standard de 12 a 15 dias(5%)</label>
+        <form action="" id="Envio">
+          <input type="radio" name="Envio" id="premium" > Premium de 2 a 5 dias(15%)
+          <br>
+          <input type="radio" name="Envio" id="express"> Express 5 a 8 dias(%7)
+          <br>
+          <input type="radio" name="Envio" id="standard" checked> Standard 12 a 15 dias(5%)
           <br />
           <br />
           <h3>Direccion de envio</h3>
@@ -100,7 +99,24 @@
           />
         </form>
         <hr />
+        <h3>Costos</h3>
+        <div class="row">
+          <div class="list-group" id="costos">
+            <div class="list-group-item">
+              Subtotal<p style="float: right;" id="subM"></p>
+              <p class="text-muted">Costo unitario del producto por cantidad</p>
+            </div>
+            <div class="list-group-item">
+              Costo de envio <p style="float: right;" id="EnvioM"></p>
+              <p class="text-muted">Segun el tipo de envio</p>
 
+            </div>
+            <div class="list-group-item">
+              Total ($) <p style="float: right;" id="TotalM"></p>
+            </div>
+          </div>
+          </div>
+        </div>
         <!-- <div class="alert alert-danger text-center" role="alert">
           <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
         </div> -->
