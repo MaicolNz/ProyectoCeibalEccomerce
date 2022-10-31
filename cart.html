@@ -81,6 +81,8 @@
             class="form-control"
             style="width: 300px"
           />
+          <div id="alertaCalle"></div>
+
           <label for="Numero" class="form-label">Numero</label>
           <input
             type="text"
@@ -89,6 +91,8 @@
             class="form-control"
             style="width: 150px"
           />
+          <div id="alertaNum"></div>
+
           <label class="form-label" for="Esquina">Esquina</label>
           <input
             type="text"
@@ -97,6 +101,8 @@
             class="form-control"
             style="width: 300px"
           />
+          <div id="alertaEsquina"></div>
+
         </form>
         <hr />
         <h3>Costos</h3>
@@ -116,11 +122,62 @@
             </div>
           </div>
           </div>
+          <hr />
+        <h3>Formas de pago</h3>
+<p class="col-sm-4" id="forma-de-pago">Aun no ha seleccionado nada</p>
+<div id="alertaTipoPag"></div>
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formasP">Seleccionar</button>
+        </div>
+
+        <div class="modal fade" id="formasP" aria-hidden="true" tabindex="-1" aria-labelledby="modal-Title">
+          <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header"> Formas de Pago </div>
+<div class="modal-body">
+  <form
+  id="FPagos"> 
+    <input type="radio" name="pago" id="tarjeta" onClick="comprobarT()">
+
+    <label for="numeroT" class="form-label">Numero de Tarjeta</label>
+    <input text name="numeroT" class="form-control" id="numeroT" disabled>     
+
+    <label for="codigT" class="form-label">Codigo de seg.</label>
+    <input text name="codigT" class="form-control" id="codigoT" disabled>
+
+    <label for="vencT" class="form-label">Vencimiento (MM/AA)</label>
+    <input text name="vencT" class="form-control" id="vencT" disabled>
+
+    <hr>
+    <input type="radio" name="pago" id="banco" onclick="comprobarT()" >
+    <label for="CB" class="form-label">Cuenta Bancaria</label>
+    <input text name="CB" class="form-control" id="CB" disabled>
+
+  </form>
+
+
+  
+</div>
+<div class="modal-footer">
+  <button class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar</button>
+
+</div>
+          </div>
+          </div>
+        </div>
+        
+</div>
+          </div>
+        </div>
+
         </div>
         <!-- <div class="alert alert-danger text-center" role="alert">
           <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
         </div> -->
       </div>
+      <br>
+      <div id="alerta" class="container"></div>
+      <div class="d-grid gap-2" id="com">
+      <button class="btn btn-primary m-3" type="button" id="Fin">Finalizar Compra</button></div>
     </main>
     <footer class="text-muted">
       <div class="container">

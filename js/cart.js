@@ -79,3 +79,129 @@ document.addEventListener("input", function (evento) {
       });
   }
 });
+
+function comprobarT() {
+  if (document.getElementById("tarjeta").checked) {
+    document.getElementById("numeroT").disabled = false;
+    document.getElementById("codigoT").disabled = false;
+    document.getElementById("vencT").disabled = false;
+    document.getElementById("CB").disabled = true;
+    document.getElementById("forma-de-pago").innerHTML = `Tarjeta`;
+  } else if (document.getElementById("banco").checked) {
+    document.getElementById("CB").disabled = false;
+    document.getElementById("numeroT").disabled = true;
+    document.getElementById("codigoT").disabled = true;
+    document.getElementById("vencT").disabled = true;
+    document.getElementById(
+      "forma-de-pago"
+    ).innerHTML = `Transeferncia bancaria`;
+  }
+}
+
+document.getElementById("Fin").addEventListener("click", function (e) {
+  verificar();
+  if (
+    document.getElementById("Calle").value.length > 0 &&
+    document.getElementById("Numero").value.length > 0 &&
+    document.getElementById("Esquina").value.length > 0 &&
+    (document.getElementById("premium").checked ||
+      document.getElementById("express").checked ||
+      document.getElementById("standard").checked) &&
+    (document.getElementById("banco").checked ||
+      document.getElementById("tarjeta").checked)
+  ) {
+    if (
+      document.getElementById("CB").value.length > 0 ||
+      (document.getElementById("numeroT").value.length > 0 &&
+        document.getElementById("codigoT").value.length > 0 &&
+        document.getElementById("vencT").value.length > 0)
+    ) {
+      document.getElementById(
+        "alerta"
+      ).innerHTML = `<div class="alert alert-success alert-dismissible" role="alert">
+      Compra realizada!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+    } else {
+      document.getElementById(
+        "alerta"
+      ).innerHTML = `<div class="alert alert-danger alert-dismissible" role="alert">
+      Faltan datos!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+    }
+  } else {
+    document.getElementById(
+      "alerta"
+    ).innerHTML = `<div class="alert alert-danger alert-dismissible" role="alert">
+    Faltan datos!
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+  }
+});
+
+function verificar() {
+  if (document.getElementById("Calle").value.length === 0) {
+    document.getElementById(
+      "alertaCalle"
+    ).innerHTML = `<p class="text-danger"> Debe ingresar una calle</p>
+`;
+  } else {
+    document.getElementById("alertaCalle").innerHTML = ``;
+  }
+  if (document.getElementById("Numero").value.length === 0) {
+    document.getElementById(
+      "alertaNum"
+    ).innerHTML = `<p class="text-danger"> Debe ingresar un numero valido</p>
+`;
+  } else {
+    document.getElementById("alertaNum").innerHTML = ``;
+  }
+  if (document.getElementById("Esquina").value.length === 0) {
+    document.getElementById(
+      "alertaEsquina"
+    ).innerHTML = `<p class="text-danger"> Debe ingresar una esquina</p>
+`;
+  } else {
+    document.getElementById("alertaEsquina").innerHTML = ``;
+  }
+  if (
+    document.getElementById("banco").checked ||
+    document.getElementById("tarjeta").checked
+  ) {
+    let html = `<p class="text-danger">`;
+    if (document.getElementById("tarjeta").checked) {
+      if (document.getElementById("numeroT").value.length === 0) {
+        html += `Debe ingersar un numero de tarjeta`;
+      }
+      if (document.getElementById("codigoT").value.length === 0) {
+        html += `   Debe ingersar el codigo de tarjeta`;
+      }
+      if (document.getElementById("vencT").value.length === 0) {
+        html += `     Debe ingersar el vencimiento de la tarjeta`;
+      }
+    }
+    if (
+      document.getElementById("numeroT").value.length > 0 &&
+      document.getElementById("codigoT").value.length > 0 &&
+      document.getElementById("vencT").value.length > 0
+    ) {
+      html = ``;
+    }
+    if (
+      document.getElementById("banco").checked &&
+      document.getElementById("CB").value.length === 0
+    ) {
+      html += `<p class="text-danger">Debe ingersar una cuenta bancaria`;
+    }
+    if (
+      document.getElementById("tarjeta").checked &&
+      document.getElementById("CB").value.length > 0
+    ) {
+      html = ``;
+    }
+    html += `</p>`;
+    document.getElementById("alertaTipoPag").innerHTML = html;
+  } else {
+    document.getElementById(
+      "alertaTipoPag"
+    ).innerHTML = `<p class="text-danger"> Debe seleccionar una forma de pago</p>`;
+  }
+}
