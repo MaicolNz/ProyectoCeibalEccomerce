@@ -1,4 +1,4 @@
-let datos = [];
+let datos = {};
 
 var boton = document.getElementById("Ingresar");
 boton.addEventListener("click", function (evento) {
@@ -11,8 +11,8 @@ boton.addEventListener("click", function (evento) {
   }
   let objeto = document.getElementById("email");
   if (objeto.value) {
-    datos.push(objeto.value);
-    localStorage.setItem("Nombre", JSON.stringify(datos));
+    datos.Email = objeto.value;
+    localStorage.setItem("datos", JSON.stringify(datos));
   }
 
   if (ok) {

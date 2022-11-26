@@ -10,6 +10,8 @@ fetch(products_url)
         var product = data.products[i];
       }
     }
+    console.log(product);
+
     let htmlContentToAppend = `
         <br>
         <h1><strong>${product.name}</strong><h1>
@@ -40,7 +42,6 @@ var com_url =
 fetch(com_url)
   .then((response) => response.json())
   .then(function (data) {
-    console.log(data);
     let coments = ``;
     for (let i = 0; i < data.length; i++) {
       coments += `<div class="list-group-item">
@@ -58,6 +59,32 @@ fetch(com_url)
     }
     document.getElementById("comentarios").innerHTML += coments;
   });
+document.getElementById("Ingresar").addEventListener("click", function (e) {
+  let comentario = document.getElementById("comentario");
+  if (comentario) {
+    let puntuacion = document.getElementById("score");
+    let fecha = new Date();
+    let coments = `<div class="list-group-item">
+      <strong>${
+        JSON.parse(localStorage.getItem("datos")).Nombre
+      }</strong> ${fecha.getFullYear()}/${
+      fecha.getMonth() + 1
+    }/ ${fecha.getDate()} ${fecha.getHours()}.${fecha.getMinutes()}.${fecha.getSeconds()} `;
+    for (let a = 0; a < 5; a++) {
+      if (a < puntuacion.value) {
+        coments += `<span class="fa fa-star checked"></span>`;
+      } else {
+        coments += `<span class="fa fa-star"></span>`;
+      }
+    }
+    coments += `<br>
+      <p>${comentario.value}</p>
+      </div>`;
+
+    document.getElementById("comentarios").innerHTML += coments;
+  }
+});
+
 // Productos relacionados
 function setProdID(id) {
   localStorage.setItem("prodID", id);
@@ -68,7 +95,6 @@ var rels = PRODUCT_INFO_URL + localStorage.getItem("prodID") + ".json";
 fetch(rels)
   .then((response) => response.json())
   .then(function (data) {
-    console.log(data.relatedProducts);
     var relacionados = data.relatedProducts;
     let html = `<div class="row">  `;
     for (let i = 0; i < relacionados.length; i++) {
@@ -85,3 +111,46 @@ fetch(rels)
 
     document.getElementById("Relacionados").innerHTML += html;
   });
+
+let datos = JSON.parse(localStorage.getItem("datos"));
+if (datos.Nombre) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${datos.Nombre}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
+  </ul>
+</div></li>`;
+} else if (datos.Email) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${datos.Email}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
+  </ul>
+</div></li>`;
+} else {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
+    Debe logearse
+  </a>`;
+}
+document.getElementById("cerrarS").addEventListener("click", function (e) {
+  localStorage.removeItem("datos");
+});

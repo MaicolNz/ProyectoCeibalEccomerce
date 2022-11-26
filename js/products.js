@@ -207,3 +207,48 @@ function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
 }
+
+let datos = JSON.parse(localStorage.getItem("datos"));
+if (datos.Nombre) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${datos.Nombre}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
+  </ul>
+</div></li>`;
+} else if (datos.Email) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${datos.Email}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
+  </ul>
+</div></li>`;
+} else {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
+    Debe logearse
+  </a>`;
+}
+document.getElementById("cerrarS").addEventListener("click", function (e) {
+  localStorage.removeItem("datos");
+});
+
+document.getElementById("Buscador").addEventListener("input", function (e) {});

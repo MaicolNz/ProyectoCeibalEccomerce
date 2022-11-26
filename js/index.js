@@ -1,4 +1,3 @@
-datos = [];
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("autos").addEventListener("click", function () {
     localStorage.setItem("catID", 101);
@@ -13,17 +12,46 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location = "products.html";
   });
 });
-datos = JSON.parse(localStorage.getItem("Nombre"));
-document.getElementById(
-  "navbarNav"
-).innerHTML += `<li class="nav-item"><div class="dropdown">
+let datos = JSON.parse(localStorage.getItem("datos"));
+if (datos.Nombre) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    ${datos}
+    ${datos.Nombre}
   </a>
 
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
     <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
   </ul>
 </div></li>`;
+} else if (datos.Email) {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    ${datos.Email}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="index.html" id="cerrarS" 
+>Cerrar sesión</a></li>
+  </ul>
+</div></li>`;
+} else {
+  document.getElementById(
+    "navbarNav"
+  ).innerHTML += `<li class="nav-item"><div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
+    Debe logearse
+  </a>`;
+}
+
+document.getElementById("cerrarS").addEventListener("click", function (e) {
+  localStorage.removeItem("datos");
+});
