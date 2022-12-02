@@ -1,5 +1,5 @@
 let datos = {};
-
+// Comprobador
 var boton = document.getElementById("Ingresar");
 boton.addEventListener("click", function (evento) {
   var control = document.getElementsByClassName("form-control");

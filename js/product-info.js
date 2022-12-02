@@ -1,43 +1,57 @@
-var cat = localStorage.getItem("catID");
-var products_url =
-  "https://japceibal.github.io/emercado-api/cats_products/" + cat + ".json";
+var prodID = localStorage.getItem("prodID");
+var products_url = PRODUCT_INFO_URL + prodID;
 var cont = document.getElementById("info");
+// Info de producto
 fetch(products_url)
   .then((response) => response.json())
   .then(function (data) {
-    for (let i = 0; i < data.products.length; i++) {
-      if (data.products[i].id == localStorage.getItem("prodID")) {
-        var product = data.products[i];
-      }
-    }
-    console.log(product);
-
     let htmlContentToAppend = `
         <br>
-        <h1><strong>${product.name}</strong><h1>
+        <h1><strong>${data.name}</strong><h1>
         <hr/>       
         <h3><strong>Precio</strong><br>
-        ${product.cost}<h3>
+        ${data.cost}<h3>
               <br>
                <h3><strong>Descripcion</strong><br>
-        ${product.description}<h3>
+        ${data.description}<h3>
               <br>
         <h3><strong>Descripcion</strong><br>
         ${localStorage.getItem("CatName")}<h3>
               <br>
 <h3><strong>Cantidad de vendidos</strong><br>
-        ${product.soldCount}<h3>
-              <br>
-              
-            <img src="${product.image}"  class="img-thumbnail">
-
-`;
+        ${data.soldCount}<h3>
+              <br>`;
+    if (data.images.length > 0) {
+      htmlContentToAppend += `<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+   <div class="carousel-item active">
+      <img src="${data.images[0]}" class="d-block w-100" alt="...">
+    </div>}`;
+      for (let i = 1; i < data.images.length; i++) {
+        htmlContentToAppend += `
+    <div class="carousel-item ">
+      <img src="${data.images[i]}" class="d-block w-100" alt="...">
+    </div>}`;
+      }
+      htmlContentToAppend += `
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>`;
+    } else {
+      htmlContentToAppend += `<img src="${data.images[0]}" class="d-block w-100" alt="...">`;
+    }
     document.getElementById("info").innerHTML = htmlContentToAppend;
   });
 
 // Comentarios
-var com_url =
-  PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("prodID") + ".json";
+var com_url = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("prodID");
 
 fetch(com_url)
   .then((response) => response.json())
@@ -90,9 +104,7 @@ function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
 }
-var rels = PRODUCT_INFO_URL + localStorage.getItem("prodID") + ".json";
-
-fetch(rels)
+fetch(products_url)
   .then((response) => response.json())
   .then(function (data) {
     var relacionados = data.relatedProducts;
@@ -111,7 +123,7 @@ fetch(rels)
 
     document.getElementById("Relacionados").innerHTML += html;
   });
-
+// Email o nombre en navbar
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -151,6 +163,7 @@ if (datos.Nombre) {
     Debe logearse
   </a>`;
 }
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });

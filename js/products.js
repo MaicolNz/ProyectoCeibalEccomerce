@@ -1,10 +1,11 @@
 var cat = localStorage.getItem("catID");
-var products_url =
-  "https://japceibal.github.io/emercado-api/cats_products/" + cat + ".json";
+var products_url = PRODUCTS_URL + cat;
 var div_cont = document.getElementsByClassName("pb-5 container");
+// Mostramos productos
 fetch(products_url)
   .then((response) => response.json())
   .then(function (data) {
+    console.log(data);
     let htmlContentToAppend = `
           <br>
 <h1><center>Productos</center><h1>
@@ -207,7 +208,7 @@ function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
 }
-
+// EMail o nombre en navbar
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -247,8 +248,7 @@ if (datos.Nombre) {
     Debe logearse
   </a>`;
 }
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });
-
-document.getElementById("Buscador").addEventListener("input", function (e) {});

@@ -1,3 +1,4 @@
+// Coloaa los datos ya guardados
 document.addEventListener("DOMContentLoaded", function (e) {
   let datos = JSON.parse(localStorage.getItem("datos"));
   if (datos.Nombre) {
@@ -19,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("Telefono").value = `${datos.Telefono}`;
   }
 });
+// Valida y guarda datos
 let formulario = document.forms["datosN"];
-console.log(formulario.SNombre.value);
 formulario.addEventListener("submit", function (e) {
   let validacionN = formulario.Nombre.validity;
   let validacionA = formulario.Apellido.validity;
@@ -40,7 +41,7 @@ formulario.addEventListener("submit", function (e) {
   e.preventDefault();
   guardarDatos();
 });
-
+// Funcion para guardar datos
 function guardarDatos() {
   let datosN = {};
   datosN.Nombre = formulario.Nombre.value;
@@ -54,7 +55,7 @@ function guardarDatos() {
     datosN.Telefono = formulario.Telefono.value;
   localStorage.setItem("datos", JSON.stringify(datosN));
 }
-
+// Email y nombre en barra nav
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -94,6 +95,7 @@ if (datos.Nombre) {
     Debe logearse
   </a>`;
 }
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });

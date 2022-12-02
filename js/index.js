@@ -1,3 +1,4 @@
+// Navegacion por imagenes
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("autos").addEventListener("click", function () {
     localStorage.setItem("catID", 101);
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location = "products.html";
   });
 });
+// Nombre o email en barra de nav
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -51,7 +53,7 @@ if (datos.Nombre) {
     Debe logearse
   </a>`;
 }
-
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });

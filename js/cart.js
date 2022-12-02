@@ -1,15 +1,13 @@
 var ids = [];
-
+// Calculo de subtotal
 function subtotal(cost, cant) {
   return cost * cant;
 }
-fetch("https://japceibal.github.io/emercado-api/user_cart/" + "25801" + ".json")
+fetch(CART_INFO_URL + "25801")
   .then((response) => response.json())
   .then(function (data) {
-    console.log(data);
-
     for (let i = 0; i < data.articles.length; i++) {
-      fetch(PRODUCT_INFO_URL + data.articles[0].id + ".json")
+      fetch(PRODUCT_INFO_URL + data.articles[0].id)
         .then((response) => response.json())
         .then(function (producto) {
           console.log(producto);
@@ -39,10 +37,10 @@ fetch("https://japceibal.github.io/emercado-api/user_cart/" + "25801" + ".json")
         });
     }
   });
-
+// Mantener todos los numeros acordes
 document.addEventListener("input", function (evento) {
   for (let i = 0; i < ids.length; i++) {
-    fetch(PRODUCT_INFO_URL + ids[i] + ".json")
+    fetch(PRODUCT_INFO_URL + ids[i])
       .then((response) => response.json())
       .then(function (producto) {
         var total =
@@ -79,7 +77,7 @@ document.addEventListener("input", function (evento) {
       });
   }
 });
-
+// Comprobar la forma de pago
 function comprobarT() {
   if (document.getElementById("tarjeta").checked) {
     document.getElementById("numeroT").disabled = false;
@@ -97,7 +95,7 @@ function comprobarT() {
     ).innerHTML = `Transeferncia bancaria`;
   }
 }
-
+// Verificar y mostrar alerta general
 document.getElementById("Fin").addEventListener("click", function (e) {
   verificar();
   if (
@@ -136,7 +134,7 @@ document.getElementById("Fin").addEventListener("click", function (e) {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
   }
 });
-
+// Verificar y mostrar alertas por tipo de error
 function verificar() {
   if (document.getElementById("Calle").value.length === 0) {
     document.getElementById(
@@ -205,7 +203,7 @@ function verificar() {
     ).innerHTML = `<p class="text-danger"> Debe seleccionar una forma de pago</p>`;
   }
 }
-
+// Colocar nombre o email en la barra
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -245,6 +243,7 @@ if (datos.Nombre) {
     Debe logearse
   </a>`;
 }
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });
