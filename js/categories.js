@@ -64,7 +64,7 @@ function showCategoriesList() {
         (maxCount != undefined && parseInt(category.productCount) <= maxCount))
     ) {
       htmlContentToAppend += `
-            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+            <article onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
@@ -77,7 +77,7 @@ function showCategoriesList() {
                         <p class="mb-1">${category.description}</p>
                     </div>
                 </div>
-            </div>
+            </article>
             `;
     }
 
@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       showCategoriesList();
     });
 });
+// Nombre o email en barra de nav
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -177,9 +178,9 @@ if (datos.Nombre) {
 >Cerrar sesión</a></li>
   </ul>
 </div></li>`;
-} else if (datos.Email) {
+} else {
   document.getElementById(
-    "navbarNav"
+    "navbar-nav"
   ).innerHTML += `<li class="nav-item"><div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     ${datos.Email}
@@ -192,14 +193,8 @@ if (datos.Nombre) {
 >Cerrar sesión</a></li>
   </ul>
 </div></li>`;
-} else {
-  document.getElementById(
-    "navbarNav"
-  ).innerHTML += `<li class="nav-item"><div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
-    Debe logearse
-  </a>`;
 }
+// Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {
   localStorage.removeItem("datos");
 });

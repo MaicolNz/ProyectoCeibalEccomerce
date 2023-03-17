@@ -18,10 +18,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 col-12 px-3">
         <button
-          class="navbar-toggler"
+          class="navbar-toggler m-1"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -32,9 +32,12 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+          <ul
+            class="navbar-nav d-flex w-100 justify-content-between p-1"
+            id="navbar-nav"
+          >
             <li class="nav-item">
-              <a class="nav-link" href="home.html">Inicio</a>
+              <a class="nav-link active" href="home.html">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="categories.html">Categorías</a>
@@ -42,86 +45,70 @@
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item"></li>
           </ul>
         </div>
-      </div>
-    </nav>
-    <div id="titulo" class="pb-5 container"></div>
-    <div class="row justify-content-center">
-      <div class="col-6 row">
-        <div class="col-2">
-          <label for="Busqueda" class="form-label float-start">Buscador</label>
-        </div>
-        <div class="col-10">
+      </nav>
+    </header>
+    <main>
+      <div id="titulo" class="p-3 col-12"></div>
+      <!-- Buscador -->
+      <section class="col-12 d-flex flex-wrap justify-content-center my-3 px-3">
+        <div class="col-12 col-md-6 d-flex align-items-center">
           <input
             name="Busqueda"
             type="text"
             class="form-control"
             id="Busqueda"
+            placeholder="Buscador"
           />
         </div>
-      </div>
-      <div class="col-4">
-        <div class="col text-end">
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-            <input
-              type="radio"
-              class="btn-check"
-              name="options"
-              id="Ascendente"
-            />
-            <label class="btn btn-light" for="Ascendente"
-              ><i class="fas fa-sort-amount-up mr-1"></i
-            ></label>
-            <input
-              type="radio"
-              class="btn-check"
-              name="options"
-              id="Descendente"
-              checked
-            />
-            <label class="btn btn-light" for="Descendente"
-              ><i class="fas fa-sort-amount-down mr-1"></i
-            ></label>
-            <input
-              type="radio"
-              class="btn-check"
-              name="options"
-              id="Relevancia"
-            />
-            <label class="btn btn-light" for="Relevancia"
-              ><i class="fas fa-sort-amount-up mr-1">Rel</i></label
-            >
-            <div class="col-3 p-0">
-              <input
-                class="form-control"
-                type="number"
-                placeholder="min."
-                id="min"
-              />
-            </div>
-            <div class="col-3 p-0">
-              <input
-                class="form-control"
-                type="number"
-                placeholder="máx."
-                id="max"
-              />
-            </div>
-            <button class="btn btn-light btn-block" id="Filtrar">
-              Filtrar
-            </button>
-          </div>
+        <div class="col-12 col-md-6 d-flex">
+          <input
+            type="radio"
+            class="btn-check"
+            name="options"
+            id="Ascendente"
+          />
+          <label class="btn btn-light" for="Ascendente"
+            ><i class="fas fa-sort-amount-up mr-1"></i
+          ></label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="options"
+            id="Descendente"
+          />
+          <label class="btn btn-light" for="Descendente"
+            ><i class="fas fa-sort-amount-down mr-1"></i
+          ></label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="options"
+            id="Relevancia"
+          />
+          <label class="btn btn-light" for="Relevancia"
+            ><i class="fas fa-sort-amount-up mr-1">Rel</i></label
+          >
+          <input
+            class="form-control"
+            type="number"
+            placeholder="min."
+            id="min"
+          />
+          <input
+            class="form-control"
+            type="number"
+            placeholder="máx."
+            id="max"
+          />
+          <button class="btn btn-light btn-block" id="Filtrar">Filtrar</button>
         </div>
-      </div>
-    </div>
-    <main class="pb-5 container" id="productos">
-      <!-- <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div> -->
+      </section>
+      <!-- Fin Buscador -->
+      <!-- Productos -->
+      <section class="px-3 col-12" id="productos"></section>
+      <!-- Fin Productos -->
     </main>
     <footer class="text-muted">
       <div class="container">

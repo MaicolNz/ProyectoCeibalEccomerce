@@ -1,15 +1,14 @@
 var cat = localStorage.getItem("catID");
 var products_url = PRODUCTS_URL + cat;
 var div_cont = document.getElementsByClassName("pb-5 container");
-// Mostramos productos
+// Carga DOM y Mostramos productos
 fetch(products_url)
   .then((response) => response.json())
   .then(function (data) {
     console.log(data);
     let htmlContentToAppend = `
-          <br>
-<h1><center>Productos</center><h1>
-        <h><center>Veras aqui todos los productos de la categoria <strong>${data.catName}</strong></center><h>       <br>
+        <h1><center>Productos</center><h1>
+        <h2><center>Veras aqui todos los productos de la categoria <strong>${data.catName}</strong></center><h2>
 `;
     document.getElementById("titulo").innerHTML = htmlContentToAppend;
   });
@@ -22,20 +21,15 @@ fetch(products_url)
     for (let i = 0; i < data.products.length; i++) {
       let product = data.products[i];
       htmlContentToAppend += `
-      <div onclick="setProdID(${product.id})"  class="list-group-item list-group-item-action cursor-active productos">
-                        <div class="row">
-                            <div class="col-3">
+      <article onclick="setProdID(${product.id})"  class=" justify-content-center my-4 list-group-item list-group-item-action cursor-active productos d-flex flex-wrap">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center ">
                                 <img src="${product.image}"  class="img-thumbnail">
-                            </div>
-                            <div class="col">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h2 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h2>
-                                    <small class="text-muted"><font size = 4>${product.soldCount} vendidos </small>
-                                </div>
-                                <h4 class="mb-1">${product.description}</h4>
-                            </div>
-                       </div>
-                       </div>
+                            </div> 
+                            <div class="col-12 col-lg-6 p-3 p-lg-1">
+                                <h2 class="d -flex">${product.name} - ${product.currency} ${product.cost} </h2>
+                                <small class="text-muted d-flex">${product.soldCount} vendidos </small>
+                                <h3 >${product.description}</h3></div>
+                       </article>
                        `;
     }
 
@@ -64,20 +58,15 @@ OrdPreAsc.addEventListener("click", function (evento) {
       for (let i = 0; i < productosOrd.length; i++) {
         let product = productosOrd[i];
         htmlContentToAppend += `
-      <div class="list-group-item">
-                        <div class="row">
-                            <div class="col-3">
+      <article onclick="setProdID(${product.id})"  class=" justify-content-center my-4 list-group-item list-group-item-action cursor-active productos d-flex flex-wrap">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center ">
                                 <img src="${product.image}"  class="img-thumbnail">
-                            </div>
-                            <div class="col">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h2 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h2>
-                                    <small class="text-muted"><font size = 4>${product.soldCount} vendidos </small>
-                                </div>
-                                <h4 class="mb-1">${product.description}</h4>
-                            </div>
-                       </div>
-                       </div>
+                            </div> 
+                            <div class="col-12 col-lg-6 p-3 p-lg-1">
+                                <h2 class="d -flex">${product.name} - ${product.currency} ${product.cost} </h2>
+                                <small class="text-muted d-flex">${product.soldCount} vendidos </small>
+                                <h3 >${product.description}</h3></div>
+                       </article>
                        `;
       }
       document.getElementById("productos").innerHTML = htmlContentToAppend;
@@ -105,20 +94,15 @@ OrdPreAsc.addEventListener("click", function (evento) {
       for (let i = 0; i < productosOrd.length; i++) {
         let product = productosOrd[i];
         htmlContentToAppend += `
-      <div class="list-group-item">
-                        <div class="row">
-                            <div class="col-3">
+      <article onclick="setProdID(${product.id})"  class=" justify-content-center my-4 list-group-item list-group-item-action cursor-active productos d-flex flex-wrap">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center ">
                                 <img src="${product.image}"  class="img-thumbnail">
-                            </div>
-                            <div class="col">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h2 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h2>
-                                    <small class="text-muted"><font size = 4>${product.soldCount} vendidos </small>
-                                </div>
-                                <h4 class="mb-1">${product.description}</h4>
-                            </div>
-                       </div>
-                       </div>
+                            </div> 
+                            <div class="col-12 col-lg-6 p-3 p-lg-1">
+                                <h2 class="d -flex">${product.name} - ${product.currency} ${product.cost} </h2>
+                                <small class="text-muted d-flex">${product.soldCount} vendidos </small>
+                                <h3 >${product.description}</h3></div>
+                       </article>
                        `;
       }
       document.getElementById("productos").innerHTML = htmlContentToAppend;
@@ -146,20 +130,15 @@ OrdPreAsc.addEventListener("click", function (evento) {
       for (let i = 0; i < productosOrd.length; i++) {
         let product = productosOrd[i];
         htmlContentToAppend += `
-      <div class="list-group-item">
-                        <div class="row">
-                            <div class="col-3">
+      <article onclick="setProdID(${product.id})"  class=" justify-content-center my-4 list-group-item list-group-item-action cursor-active productos d-flex flex-wrap">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center ">
                                 <img src="${product.image}"  class="img-thumbnail">
-                            </div>
-                            <div class="col">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h2 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h2>
-                                    <small class="text-muted"><font size = 4>${product.soldCount} vendidos </small>
-                                </div>
-                                <h4 class="mb-1">${product.description}</h4>
-                            </div>
-                       </div>
-                       </div>
+                            </div> 
+                            <div class="col-12 col-lg-6 p-3 p-lg-1">
+                                <h2 class="d -flex">${product.name} - ${product.currency} ${product.cost} </h2>
+                                <small class="text-muted d-flex">${product.soldCount} vendidos </small>
+                                <h3 >${product.description}</h3></div>
+                       </article>
                        `;
       }
       document.getElementById("productos").innerHTML = htmlContentToAppend;
@@ -182,20 +161,15 @@ filtOk.addEventListener("click", function (evento) {
       for (let i = 0; i < productosFiltrados.length; i++) {
         let product = productosFiltrados[i];
         htmlContentToAppend += `
-      <div class="list-group-item">
-                        <div class="row">
-                            <div class="col-3">
+      <article onclick="setProdID(${product.id})"  class=" justify-content-center my-4 list-group-item list-group-item-action cursor-active productos d-flex flex-wrap">
+                            <div class="col-12 col-lg-6 d-flex justify-content-center ">
                                 <img src="${product.image}"  class="img-thumbnail">
-                            </div>
-                            <div class="col">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h2 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h2>
-                                    <small class="text-muted"><font size = 4>${product.soldCount} vendidos </small>
-                                </div>
-                                <h4 class="mb-1">${product.description}</h4>
-                            </div>
-                       </div>
-                       </div>
+                            </div> 
+                            <div class="col-12 col-lg-6 p-3 p-lg-1">
+                                <h2 class="d -flex">${product.name} - ${product.currency} ${product.cost} </h2>
+                                <small class="text-muted d-flex">${product.soldCount} vendidos </small>
+                                <h3 >${product.description}</h3></div>
+                       </article>
                        `;
       }
       document.getElementById("productos").innerHTML = htmlContentToAppend;
@@ -208,11 +182,11 @@ function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
 }
-// EMail o nombre en navbar
+// Email o nombre en navbar
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
-    "navbarNav"
+    "navbar-nav"
   ).innerHTML += `<li class="nav-item"><div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     ${datos.Nombre}
@@ -227,12 +201,11 @@ if (datos.Nombre) {
 </div></li>`;
 } else if (datos.Email) {
   document.getElementById(
-    "navbarNav"
+    "navbar-nav"
   ).innerHTML += `<li class="nav-item"><div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     ${datos.Email}
   </a>
-
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
     <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
@@ -240,13 +213,6 @@ if (datos.Nombre) {
 >Cerrar sesión</a></li>
   </ul>
 </div></li>`;
-} else {
-  document.getElementById(
-    "navbarNav"
-  ).innerHTML += `<li class="nav-item"><div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
-    Debe logearse
-  </a>`;
 }
 // Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {

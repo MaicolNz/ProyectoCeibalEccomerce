@@ -18,10 +18,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 col-12 px-3">
         <button
-          class="navbar-toggler"
+          class="navbar-toggler m-1"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -32,27 +32,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+          <ul
+            class="navbar-nav d-flex w-100 justify-content-between p-1"
+            id="navbar-nav"
+          >
             <li class="nav-item">
-              <a class="nav-link" href="home.html">Inicio</a>
+              <a class="nav-link active" href="home.html">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="categories.html">Categorías</a>
+              <a class="nav-link" href="categories.html">Categorías</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item"></li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
     <main class="pb-5">
       <div class="text-center p-4">
         <h2>Categorías</h2>
         <p class="lead">Verás aquí todas las categorías del sitio.</p>
       </div>
-      <div class="container">
+      <section class="container">
         <div class="row">
           <div class="col text-end">
             <div
@@ -122,9 +124,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="list-group" id="cat-list-container"></div>
+          <section class="list-group" id="cat-list-container"></section>
         </div>
-      </div>
+      </section>
     </main>
     <footer class="text-muted">
       <div class="container">

@@ -55,7 +55,7 @@ function guardarDatos() {
     datosN.Telefono = formulario.Telefono.value;
   localStorage.setItem("datos", JSON.stringify(datosN));
 }
-// Email y nombre en barra nav
+// Nombre o email en barra de nav
 let datos = JSON.parse(localStorage.getItem("datos"));
 if (datos.Nombre) {
   document.getElementById(
@@ -72,9 +72,9 @@ if (datos.Nombre) {
 >Cerrar sesión</a></li>
   </ul>
 </div></li>`;
-} else if (datos.Email) {
+} else {
   document.getElementById(
-    "navbarNav"
+    "navbar-nav"
   ).innerHTML += `<li class="nav-item"><div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     ${datos.Email}
@@ -87,13 +87,6 @@ if (datos.Nombre) {
 >Cerrar sesión</a></li>
   </ul>
 </div></li>`;
-} else {
-  document.getElementById(
-    "navbarNav"
-  ).innerHTML += `<li class="nav-item"><div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle disabled" href="#"">
-    Debe logearse
-  </a>`;
 }
 // Cerrar sesion
 document.getElementById("cerrarS").addEventListener("click", function (e) {

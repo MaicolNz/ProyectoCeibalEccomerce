@@ -4,11 +4,15 @@
 .site-header {
   font-family: "Raleway", serif !important;
 }
-
+* {
+  box-sizing: border-box;
+}
 .jumbotron .display-4 {
   font-weight: bold;
 }
-
+textarea {
+  resize: none;
+}
 nav a {
   text-decoration: none;
 }
@@ -26,19 +30,6 @@ nav a {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
-}
-
-.jumbotron {
-  height: 50vh;
-  padding: 5em inherit;
-  margin-bottom: 0;
-  background-color: #53c0fb;
-  background: url("../img/cover_back.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  font-weight: bold;
 }
 
 @media (min-width: 768px) {
